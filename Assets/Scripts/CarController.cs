@@ -18,14 +18,19 @@ public class CarController : MonoBehaviour
     public float maxMotorTorque;
     public float maxSteeringAngle;
     public float maxBrakeTorque;
+    public float boostForce = 5f;
+    public float rollForce = 1000f;
 
     public float handbrakeSlip = 1f;
     private WheelFrictionCurve _originalWFC;
     private WheelFrictionCurve _driftWFC;
 
+    private Rigidbody rb;
+
     private void Start()
     {
-        GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -0.2f, 0);
+        rb = GetComponent<Rigidbody>();
+        rb.centerOfMass += new Vector3(0, -0.2f, 0);
         _originalWFC = axleInfos[0].leftWheel.sidewaysFriction;
         _driftWFC = _originalWFC;
         _driftWFC.extremumSlip = handbrakeSlip;
@@ -33,11 +38,20 @@ public class CarController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        bool carGrounded = true;
+        
+
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
 
         foreach (AxleInfo axleInfo in axleInfos)
         {
+            //check if car is in the air (all wheels off ground)
+            if (!axleInfo.leftWheel.isGrounded & !axleInfo.rightWheel.isGrounded)
+            {
+                carGrounded = false;
+            }
+
             if (axleInfo.steering)
             {
                 axleInfo.leftWheel.steerAngle = steering;
@@ -48,6 +62,14 @@ public class CarController : MonoBehaviour
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
 
+
+                //input for boost and wheel is grounded
+                if (Input.GetKey(KeyCode.LeftShift) & carGrounded)
+                {
+                    rb.AddForce(transform.forward * boostForce, ForceMode.Acceleration);
+                    Debug.Log("BOOST");
+                }
+
             }
             if (axleInfo.braking)
             {
@@ -57,7 +79,7 @@ public class CarController : MonoBehaviour
                 {
                     //brake
                     axleInfo.leftWheel.brakeTorque = maxBrakeTorque;
-                    Debug.Log("Braking");
+                    //Debug.Log("Braking");
                 }
                 else axleInfo.leftWheel.brakeTorque = 0;
                 //braking for right wheel
@@ -66,13 +88,19 @@ public class CarController : MonoBehaviour
                 {
                     //brake
                     axleInfo.rightWheel.brakeTorque = maxBrakeTorque;
-                    Debug.Log("Braking");
+                    //Debug.Log("Braking");
                 }
                 else axleInfo.rightWheel.brakeTorque = 0;
             }
 
-            //E-Brake
-            
+            //Rollover ability
+            if (!carGrounded)
+            {
+                rb.AddRelativeTorque(0,0,-Input.GetAxis("Horizontal") * rollForce);
+                Debug.Log("Rolling over");
+            }
+
+            //Drift button
             if (Input.GetButton("Jump"))
             {
                 axleInfo.rightWheel.sidewaysFriction = _driftWFC;
@@ -84,16 +112,19 @@ public class CarController : MonoBehaviour
                 axleInfo.leftWheel.sidewaysFriction = _originalWFC;
             }
 
-            //Reset car (flip car back over)
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Vector3 fwd = transform.forward;
-                transform.rotation = Quaternion.identity;
-                transform.forward = fwd;
-            }
-
             ApplyLocalPositionToVisuals(axleInfo.leftWheel);
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+        }
+    }
+    private void Update()
+    {
+        //Reset car (flip car back over)
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Vector3 fwd = transform.forward;
+            transform.rotation = Quaternion.identity;
+            Debug.Log("Reset");
+            transform.forward = fwd;
         }
     }
 
