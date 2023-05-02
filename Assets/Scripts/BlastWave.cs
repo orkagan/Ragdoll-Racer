@@ -8,7 +8,7 @@ public class BlastWave : MonoBehaviour
     public float maxRadius = 25f;
     public float speed = 100f;
     public float startWidth = 5f;
-    public float force = 5f;
+    public float force = 10f;
     
     private LineRenderer lineRenderer;
     private void Awake()
@@ -20,6 +20,13 @@ public class BlastWave : MonoBehaviour
 
     private IEnumerator Blast()
     {
+        foreach(ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Clear();
+            ps.time = 0;
+            ps.Play();
+        }
+
         float currentRadius = 0f;
 
         while (currentRadius < maxRadius)
@@ -40,9 +47,7 @@ public class BlastWave : MonoBehaviour
             Rigidbody rb = hittingObjects[i].GetComponent<Rigidbody>();
 
             if (!rb) continue;
-            Debug.Log(hittingObjects[i].name);
-            Vector3 direction = (hittingObjects[i].transform.position - transform.position).normalized;
-            rb.AddForce(direction * force, ForceMode.Impulse);
+            rb.AddExplosionForce(force, transform.position, currentRadius);
         }
     }
 
@@ -61,12 +66,16 @@ public class BlastWave : MonoBehaviour
 
         lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
     }
+    private void Start()
+    {
+        StartCoroutine(Blast());
+    }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(Blast());
         }
-    }
+    }*/
 }

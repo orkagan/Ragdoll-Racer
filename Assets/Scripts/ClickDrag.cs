@@ -12,8 +12,6 @@ public class ClickDrag : MonoBehaviour
     Vector3 orginalPosition;
     float selectionDistance;
 
-    public GameObject marker;
-
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -46,8 +44,6 @@ public class ClickDrag : MonoBehaviour
     {
         if (dragObject)
         {
-            marker.transform.position = Input.mousePosition + offset;
-
             Vector3 mousePositionOffset = Camera.main.ScreenToWorldPoint(new Vector3
             (Input.mousePosition.x,
                 Input.mousePosition.y,
