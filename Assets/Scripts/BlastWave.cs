@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BlastWave : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BlastWave : MonoBehaviour
     public float force = 10f;
     
     private LineRenderer lineRenderer;
+    public UnityEvent onHit;
+    public LayerMask enemyLayer;
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -48,6 +51,17 @@ public class BlastWave : MonoBehaviour
 
             if (!rb) continue;
             rb.AddExplosionForce(force, transform.position, currentRadius);
+        }
+        hittingObjects = Physics.OverlapSphere(transform.position, currentRadius, enemyLayer);
+        for (int i = 0; i < hittingObjects.Length; i++)
+        {
+            LimbCollision rdc = GetComponentInParent<LimbCollision>();
+            if (rdc != null)
+            {
+                rdc.parentRagdoll.ActivateRagdoll();
+                Debug.Log("found");
+            }
+            else Debug.Log("null rdc");
         }
     }
 

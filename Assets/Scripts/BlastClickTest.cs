@@ -11,7 +11,7 @@ public class BlastClickTest : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) & !MenuHandler.paused)
         {
             RaycastHit hit;
 
@@ -19,7 +19,6 @@ public class BlastClickTest : MonoBehaviour
             {
                 Destroy(Instantiate(blastPrefab, hit.point, blastPrefab.transform.rotation),2f);
             }
-
         }
     }
 }

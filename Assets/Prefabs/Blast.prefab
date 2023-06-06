@@ -9989,6 +9989,12 @@ MonoBehaviour:
   speed: 50
   startWidth: 2
   force: 500
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &4864181545089604993
 GameObject:
   m_ObjectHideFlags: 0
