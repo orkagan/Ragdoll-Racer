@@ -93,12 +93,6 @@ public class CarController : MonoBehaviour
                 else axleInfo.rightWheel.brakeTorque = 0;
             }
 
-            //Rollover ability
-            if (!carGrounded)
-            {
-                rb.AddRelativeTorque(0,0,-Input.GetAxis("Horizontal") * rollForce);
-                Debug.Log("Rolling over");
-            }
 
             //Drift button
             if (Input.GetButton("Jump"))
@@ -115,6 +109,12 @@ public class CarController : MonoBehaviour
             ApplyLocalPositionToVisuals(axleInfo.leftWheel);
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);
         }
+        //Rollover ability
+        /*if (!carGrounded)
+        {
+            rb.AddRelativeTorque(0, 0, -Input.GetAxis("Horizontal") * rollForce);
+            Debug.Log("Rolling over");
+        }*/
     }
     private void Update()
     {
