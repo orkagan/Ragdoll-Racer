@@ -125,6 +125,7 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.identity;
             Debug.Log("Reset");
             transform.forward = fwd;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 

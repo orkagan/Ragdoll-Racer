@@ -55,13 +55,11 @@ public class BlastWave : MonoBehaviour
         hittingObjects = Physics.OverlapSphere(transform.position, currentRadius, enemyLayer);
         for (int i = 0; i < hittingObjects.Length; i++)
         {
-            LimbCollision rdc = GetComponentInParent<LimbCollision>();
+            LimbCollision rdc = hittingObjects[i].GetComponentInParent<LimbCollision>();
             if (rdc != null)
             {
                 rdc.parentRagdoll.ActivateRagdoll();
-                Debug.Log("found");
             }
-            else Debug.Log("null rdc");
         }
     }
 

@@ -38,4 +38,13 @@ public class MenuHandler : MonoBehaviour
             GameHUD.SetActive(true);
         }
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        Debug.Log("ExitGame attempted.");
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }

@@ -8,13 +8,13 @@ public class CarCamera : MonoBehaviour
 	public Transform car;
 	public float distance = 6.4f;
 	public float height = 1.4f;
+	public float heightOffset = 1.4f;
 	public float rotationDamping = 3.0f;
 	public float heightDamping = 2.0f;
 	public float zoomRatio = 0.5f;
 	public float defaultFOV = 60f;
 
 	private Vector3 rotationVector;
-
 	void LateUpdate()
 	{
 		float wantedAngle = rotationVector.y;
@@ -31,9 +31,8 @@ public class CarCamera : MonoBehaviour
 		Vector3 temp = transform.position; //temporary variable so Unity doesn't complain
 		temp.y = myHeight;
 		transform.position = temp;
-		transform.LookAt(car);
+		transform.LookAt(car.position + Vector3.up*heightOffset);
 	}
-
 	void FixedUpdate()
 	{
 		Vector3 localVelocity = car.InverseTransformDirection(car.GetComponent<Rigidbody>().velocity);
