@@ -17,7 +17,7 @@ public class BlastClickTest : MonoBehaviour
 
     void Update()
     {
-        if (MenuHandler.Instance.CurrentGameState==GameState.Paused) return;
+        if (MenuHandler.Instance.CurrentGameState!=GameState.Playing) return;
 
         if (Input.GetMouseButtonDown(0) & _cooldownTime<=0)
         {

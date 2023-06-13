@@ -116,7 +116,7 @@ public class MenuHandler : MonoBehaviour
             }
         }
     }
-    public void NextScene()
+    public static void NextScene()
     {
         // Get the current scene
         Scene currentScene = SceneManager.GetActiveScene();
@@ -124,14 +124,14 @@ public class MenuHandler : MonoBehaviour
         SceneManager.LoadScene((currentScene.buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
     }
 
-    public void Retry()
+    public static void Retry()
     {
         //reloads current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
-    public void ExitGame()
+    public static void ExitGame()
     {
         Application.Quit();
 #if UNITY_EDITOR

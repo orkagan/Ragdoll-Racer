@@ -110,22 +110,26 @@ public class CarController : MonoBehaviour
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);
         }
         //Rollover ability
-        /*if (!carGrounded)
+        if (!carGrounded && Input.GetButton("Jump"))
         {
             rb.AddRelativeTorque(0, 0, -Input.GetAxis("Horizontal") * rollForce);
             Debug.Log("Rolling over");
-        }*/
+        }
     }
     private void Update()
     {
         //Reset car (flip car back over)
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) & MenuHandler.Instance.CurrentGameState == GameState.Playing)
         {
             Vector3 fwd = transform.forward;
             transform.rotation = Quaternion.identity;
             Debug.Log("Reset");
             transform.forward = fwd;
             rb.angularVelocity = Vector3.zero;
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            MenuHandler.Retry();
         }
     }
 
