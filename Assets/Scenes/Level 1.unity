@@ -41930,6 +41930,10 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 6142089049713162851, guid: 9c033d2cad89e134f828b6cd324fccb4, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9202718042158891394, guid: 9c033d2cad89e134f828b6cd324fccb4, type: 3}
       propertyPath: m_SuspensionDistance
       value: 0.2
