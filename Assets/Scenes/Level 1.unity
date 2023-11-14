@@ -41746,6 +41746,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: elements.Array.data[1].pauses
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: elements.Array.data[2].pauses
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: elements.Array.data[0].testList.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -5,6 +5,9 @@ using UnityEngine;
 public class ClickDrag : MonoBehaviour
 {
     public float forceAmmount = 500;
+    public float scrollSensitivity = 0.2f;
+
+    public GameObject dragCursor;
 
     Rigidbody dragObject;
     Vector3 offset;
@@ -38,10 +41,17 @@ public class ClickDrag : MonoBehaviour
             dragObject = null;
         }
 
+        if (dragObject != null)
+        {
+            selectionDistance += Input.mouseScrollDelta.y * scrollSensitivity;
+        }
+
     }
 
     private void FixedUpdate()
     {
+        dragCursor.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, selectionDistance));
+
         if (dragObject)
         {
             Vector3 mousePositionOffset = Camera.main.ScreenToWorldPoint(new Vector3

@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public enum GameState
 {
-    Menu,
+    MainMenu,
+    LevelSelect,
+    Options,
     Playing,
     Paused,
     Win
@@ -24,7 +27,6 @@ public class MenuHandler : MonoBehaviour
         set
         {
             gameState = value;
-            CheckPaused();
             SwitchPanels(gameState);
         }
     }
@@ -33,8 +35,12 @@ public class MenuHandler : MonoBehaviour
     public struct Element
     {
         public GameState panelState;
-        public GameObject GameObj;
+        public GameObject panelGameObj;
+        public bool pauses;
     }
+    /// <summary>
+    /// Stores the UI panel associated with a state and if it should pause the game.
+    /// </summary>
     public Element[] elements;
 
     #region Singleton Setup
@@ -78,26 +84,6 @@ public class MenuHandler : MonoBehaviour
         }
     }
 
-    void CheckPaused()
-    {
-        switch (CurrentGameState)
-        {
-            case GameState.Menu:
-                break;
-            case GameState.Playing:
-                Time.timeScale = 1;
-                break;
-            case GameState.Paused:
-                Time.timeScale = 0;
-                break;
-            case GameState.Win:
-                Time.timeScale = 0;
-                break;
-            default:
-                break;
-        }
-    }
-
     public void Win()
     {
         CurrentGameState = GameState.Win;
@@ -108,11 +94,12 @@ public class MenuHandler : MonoBehaviour
         {
             if (item.panelState == CurrentGameState)
             {
-                item.GameObj.SetActive(true);
+                item.panelGameObj.SetActive(true);
+                Time.timeScale = item.pauses ? 0 : 1;
             }
             else
             {
-                item.GameObj.SetActive(false);
+                item.panelGameObj.SetActive(false);
             }
         }
     }
@@ -122,6 +109,11 @@ public class MenuHandler : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         // Load the next scene after the current scene (last scene loops back around to first)
         SceneManager.LoadScene((currentScene.buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+    }
+
+    public static void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public static void Retry()
