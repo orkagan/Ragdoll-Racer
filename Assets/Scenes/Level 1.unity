@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 609f1c049baf5be49b7f867e8fb7937a, type: 2}
   m_LightingSettings: {fileID: 255020518}
 --- !u!196 &4
 NavMeshSettings:
@@ -15669,6 +15669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceAmmount: 500
+  scrollSensitivity: 0.2
+  dragCursor: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41745,6 +41747,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4179549168201071416, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549168201071416, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549168201071416, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: gameState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: elements.Array.data[1].pauses
       value: 1
@@ -41752,6 +41770,18 @@ PrefabInstance:
     - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: elements.Array.data[2].pauses
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: elements.Array.data[0].panelState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: elements.Array.data[1].panelState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: elements.Array.data[2].panelState
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4179549169350334626, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: elements.Array.data[0].testList.Array.size
@@ -41852,6 +41882,14 @@ PrefabInstance:
     - target: {fileID: 4179549169350334649, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169674297794, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179549169674297794, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179549169856071705, guid: 041d82e2aba718a459770a6b9ad4ccd3, type: 3}
       propertyPath: car

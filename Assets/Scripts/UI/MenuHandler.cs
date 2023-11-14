@@ -69,6 +69,10 @@ public class MenuHandler : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        SwitchPanels(CurrentGameState);
+    }
     void Update()
     {
         if (Input.GetButtonDown("Pause"))
@@ -103,6 +107,11 @@ public class MenuHandler : MonoBehaviour
             }
         }
     }
+    public void ChangeGameState(string targetState)
+    {
+        CurrentGameState = (GameState)System.Enum.Parse(typeof(GameState),targetState);
+    }
+
     public static void NextScene()
     {
         // Get the current scene

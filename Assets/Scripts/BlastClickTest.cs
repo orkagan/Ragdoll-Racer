@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Was supposed to be a placeholder for a whole car mounted canon firing thing but it is what it is, ticks the box of doing a raycast while still doing a fun explosion
+/// </summary>
 public class BlastClickTest : MonoBehaviour
 {
     public GameObject blastPrefab;
