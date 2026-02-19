@@ -35,7 +35,7 @@ public class CarCamera : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		Vector3 localVelocity = car.InverseTransformDirection(car.GetComponent<Rigidbody>().velocity);
+		Vector3 localVelocity = car.InverseTransformDirection(car.GetComponent<Rigidbody>().linearVelocity);
 		if (localVelocity.z < -1f)
 		{
 			Vector3 temp = rotationVector;
@@ -48,7 +48,7 @@ public class CarCamera : MonoBehaviour
 			temp.y = car.eulerAngles.y;
 			rotationVector = temp;
 		}
-		float acc = car.GetComponent<Rigidbody>().velocity.magnitude;
+		float acc = car.GetComponent<Rigidbody>().linearVelocity.magnitude;
 		GetComponent<Camera>().fieldOfView = defaultFOV + acc * zoomRatio;
 	}
 }

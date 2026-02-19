@@ -59,7 +59,7 @@ public class ClickDrag : MonoBehaviour
                 Input.mousePosition.y,
                 selectionDistance)) - orginalPosition;
 
-            dragObject.velocity = (orginalPosition + mousePositionOffset - dragObject.transform.position)
+            dragObject.linearVelocity = (orginalPosition + mousePositionOffset - dragObject.transform.position)
                                   * forceAmmount * Time.deltaTime;
         }
     }
