@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RagdollController : MonoBehaviour
 {
 	List<Rigidbody> rbLimbs;
 	Collider boxTrigger;
+	Animator ani;
+	EnemyController enemyScript;
+	NavMeshAgent navAgent;
 
 	void Start()
 	{
 		rbLimbs = new List<Rigidbody>();
+		ani = GetComponent<Animator>();
+		enemyScript = GetComponent<EnemyController>();
 		foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
 		{
 			rbLimbs.Add(rb);
@@ -30,6 +36,9 @@ public class RagdollController : MonoBehaviour
 			rb.gameObject.GetComponent<Collider>().isTrigger = false;
 			rb.isKinematic = false;
 		}
+		ani.enabled = false;
+		enemyScript.enabled = false;
+		navAgent.enabled = false;
 	}
 
 	private void OnTriggerEnter(Collider other)
