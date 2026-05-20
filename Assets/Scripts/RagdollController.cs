@@ -16,6 +16,7 @@ public class RagdollController : MonoBehaviour
 		rbLimbs = new List<Rigidbody>();
 		ani = GetComponent<Animator>();
 		enemyScript = GetComponent<EnemyController>();
+		navAgent = GetComponent<NavMeshAgent>();
 		foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
 		{
 			rbLimbs.Add(rb);

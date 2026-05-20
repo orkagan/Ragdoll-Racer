@@ -22553,14 +22553,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 75001958392102838, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
-      propertyPath: m_Speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 75001958392102838, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4621598767173216969, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
       propertyPath: m_Name
       value: Zombiegirl
@@ -22608,14 +22600,6 @@ PrefabInstance:
     - target: {fileID: 5433847191834620019, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5975518268729021449, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9071749395725960905, guid: 6c67b6e566f1d6b48a6ae1be587b9d03, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

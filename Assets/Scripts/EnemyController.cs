@@ -4,10 +4,12 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     NavMeshAgent agent;
+    Animator ani;
     Transform player;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        ani = GetComponent<Animator>();
         player = FindFirstObjectByType<CarController>().transform;
     }
 
@@ -15,5 +17,6 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         agent.SetDestination(player.position);
+        ani.SetFloat("Speed", agent.velocity.magnitude/agent.speed);
     }
 }
